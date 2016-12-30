@@ -1,27 +1,22 @@
 # ember-url
 
-This README outlines the details of collaborating on this Ember addon.
+[![Build Status](https://travis-ci.org/tchak/ember-url.svg?branch=master)](https://travis-ci.org/tchak/ember-url)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-url.svg)](http://emberobserver.com/addons/ember-url)
+[![npm version](https://badge.fury.io/js/ember-url.svg)](http://badge.fury.io/js/ember-url)
+
+HTML5 [URL](https://url.spec.whatwg.org) polyfill bundled for ember-cli users
+
+* [spec](https://fetch.spec.whatwg.org)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-url`
-* `npm install`
-* `bower install`
+* `ember install ember-url`
 
-## Running
+## Usage
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+```js
+import URL from 'url';
 
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+let url = new URL('https://example.com/?q=Paris');
+url.searchParams.get('q') // 'Paris'
+```
