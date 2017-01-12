@@ -18,6 +18,12 @@ test('url', (assert) => {
   assert.equal(url.href, 'https://example.com/?b=2&c=3');
 });
 
+test('add query params to url', (assert) => {
+  let url = new URL('https://example.com');
+  url.searchParams.set('a', 'b');
+  assert.equal(url.href, 'https://example.com/?a=b');
+});
+
 test('url base', (assert) => {
   let url = new URL('/?a=1&b=2', 'https://example.com');
   assert.ok(url.searchParams, 'should have searchParams');

@@ -7,7 +7,7 @@ export default class AnchorURL extends BaseURL {
     let doc = document.implementation.createHTMLDocument('');
     if (base) {
       let baseElement = doc.createElement('base');
-      baseElement.href = base || window.lo;
+      baseElement.href = base;
       doc.head.appendChild(baseElement);
     }
     let anchorElement = doc.createElement('a');

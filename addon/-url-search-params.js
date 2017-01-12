@@ -301,7 +301,7 @@ export function upgradeClass(Class){
             verifySearchParams(this, Class);
             return this._searchParams || createSearchParams(
               this,
-              new URLSearchParams(this.search.slice(1))
+              new URLSearchParams(this.search)
             );
           },
           set: function (sp) {
