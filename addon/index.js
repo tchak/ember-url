@@ -9,9 +9,12 @@ const hasURL = typeof URL === 'function';
 const testURL = hasURL && new URL('http://example.com');
 
 export function needPolyfill() {
-  return !Object.getOwnPropertyDescriptor(URL.prototype, 'search') ||
-    !hasURL ||
-    !testURL.href;
+  return (
+    !isFastBoot &&
+    (!hasURL ||
+      !testURL.href ||
+      !Object.getOwnPropertyDescriptor(URL.prototype, 'search'))
+  );
 }
 
 if (isFastBoot) {
