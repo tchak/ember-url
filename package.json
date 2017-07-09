@@ -1,6 +1,6 @@
 {
   "name": "ember-url",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "description": "HTML5 URL polyfill bundled for ember-cli users.",
   "keywords": [
     "ember-addon",
