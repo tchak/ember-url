@@ -1,9 +1,9 @@
 import { module, test } from 'ember-qunit';
-import URL from 'url';
+import URL, { URLSearchParams } from 'url';
 
 module('url-search-params');
 
-test('url', (assert) => {
+test('url', assert => {
   let url = new URL('https://example.com?a=1&b=2');
   assert.ok(url.searchParams, 'should have searchParams');
   assert.equal(url.search, '?a=1&b=2');
@@ -18,13 +18,17 @@ test('url', (assert) => {
   assert.equal(url.href, 'https://example.com/?b=2&c=3');
 });
 
-test('add query params to url', (assert) => {
+test('add query params to url', assert => {
   let url = new URL('https://example.com');
   url.searchParams.set('a', 'b');
   assert.equal(url.href, 'https://example.com/?a=b');
+
+  let params = new URLSearchParams();
+  params.append('test', 'yolo');
+  assert.equal(params.toString(), 'test=yolo');
 });
 
-test('url base', (assert) => {
+test('url base', assert => {
   let url = new URL('/?a=1&b=2', 'https://example.com');
   assert.ok(url.searchParams, 'should have searchParams');
   assert.equal(url.search, '?a=1&b=2');

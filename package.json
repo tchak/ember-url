@@ -2,11 +2,7 @@
   "name": "ember-url",
   "version": "0.4.0",
   "description": "HTML5 URL polyfill bundled for ember-cli users.",
-  "keywords": [
-    "ember-addon",
-    "url",
-    "fastboot"
-  ],
+  "keywords": ["ember-addon", "url", "fastboot"],
   "license": "MIT",
   "author": "Paul Chavard",
   "directories": {
@@ -27,7 +23,7 @@
     "ember-cli": "~2.15.1",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.0.0",
-    "ember-cli-fastboot": "^1.0.0-rc.5",
+    "ember-cli-fastboot": "^1.0.5",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
@@ -44,9 +40,7 @@
     "ember-source": "~2.15.0",
     "loader.js": "^4.2.3"
   },
-  "fastbootDependencies": [
-    "url"
-  ],
+  "fastbootDependencies": ["url"],
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
