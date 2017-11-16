@@ -2,7 +2,11 @@
   "name": "ember-url",
   "version": "0.5.0",
   "description": "HTML5 URL polyfill bundled for ember-cli users.",
-  "keywords": ["ember-addon", "url", "fastboot"],
+  "keywords": [
+    "ember-addon",
+    "url",
+    "fastboot"
+  ],
   "license": "MIT",
   "author": "Paul Chavard",
   "directories": {
@@ -20,7 +24,7 @@
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
-    "ember-cli": "~2.15.1",
+    "ember-cli": "~2.16.2",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.0.0",
     "ember-cli-fastboot": "^1.0.5",
@@ -31,16 +35,18 @@
     "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^1.2.0",
+    "ember-cli-uglify": "^2.0.0",
     "ember-cli-update": "^0.8.0",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.0.0",
-    "ember-source": "~2.15.0",
+    "ember-source": "~2.16.0",
     "loader.js": "^4.2.3"
   },
-  "fastbootDependencies": ["url"],
+  "fastbootDependencies": [
+    "url"
+  ],
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
