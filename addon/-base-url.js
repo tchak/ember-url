@@ -36,6 +36,10 @@ class BaseURL {
     this._setPart('host', value);
   }
 
+  get origin() {
+    return this._urlObject.origin;
+  }
+
   get hostname() {
     return this._urlObject.hostname;
   }
