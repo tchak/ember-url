@@ -16,7 +16,7 @@
   "repository": "https://github.com/tchak/ember-url",
   "scripts": {
     "build": "ember build",
-    "lint:js": "eslint --fix ./*.js addon addon-test-support app config lib server test-support tests",
+    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
     "test": "ember try:each"
   },

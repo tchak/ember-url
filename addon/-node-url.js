@@ -38,7 +38,7 @@ if (isFastBoot) {
           configurable: true
         });
       }
-    }
+    };
   }
 }
 
