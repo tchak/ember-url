@@ -35,11 +35,14 @@ export default function URLSearchParams(query) {
   if (query.charAt(0) === '?') {
     query = query.slice(1);
   }
-  for (var
-    index, value,
-    pairs = (query || '').split('&'),
-    i = 0,
-    length = pairs.length; i < length; i++
+  for (
+    var index,
+      value,
+      pairs = (query || '').split('&'),
+      i = 0,
+      length = pairs.length;
+    i < length;
+    i++
   ) {
     value = pairs[i];
     index = value.indexOf('=');
@@ -48,17 +51,14 @@ export default function URLSearchParams(query) {
         decode(value.slice(0, index)),
         decode(value.slice(index + 1))
       );
-    } else if (value.length){
-      this.append(
-        decode(value),
-        ''
-      );
+    } else if (value.length) {
+      this.append(decode(value), '');
     }
   }
 }
 
 const URLSearchParamsProto = URLSearchParams.prototype;
-const find = /[!'\(\)~]|%20|%00/g;
+const find = /[!'()~]|%20|%00/g;
 const plus = /\+/g;
 const replace = {
   '!': '%21',
@@ -69,7 +69,7 @@ const replace = {
   '%20': '+',
   '%00': '\x00'
 };
-const replacer = function (match) {
+const replacer = function(match) {
   return replace[match];
 };
 const iterable = isIterable();
@@ -78,7 +78,7 @@ const secret = '__URLSearchParams__:' + Math.random();
 function isIterable() {
   try {
     return !!Symbol.iterator;
-  } catch(error) {
+  } catch (error) {
     return false;
   }
 }
@@ -125,11 +125,13 @@ URLSearchParamsProto.forEach = function forEach(callback, thisArg) {
 
 URLSearchParamsProto.keys = function keys() {
   var items = [];
-  this.forEach(function(value, name) { items.push(name); });
+  this.forEach(function(value, name) {
+    items.push(name);
+  });
   var iterator = {
     next: function() {
       var value = items.shift();
-      return {done: value === undefined, value: value};
+      return { done: value === undefined, value: value };
     }
   };
 
@@ -144,11 +146,13 @@ URLSearchParamsProto.keys = function keys() {
 
 URLSearchParamsProto.values = function values() {
   var items = [];
-  this.forEach(function(value) { items.push(value); });
+  this.forEach(function(value) {
+    items.push(value);
+  });
   var iterator = {
     next: function() {
       var value = items.shift();
-      return {done: value === undefined, value: value};
+      return { done: value === undefined, value: value };
     }
   };
 
@@ -163,11 +167,13 @@ URLSearchParamsProto.values = function values() {
 
 URLSearchParamsProto.entries = function entries() {
   var items = [];
-  this.forEach(function(value, name) { items.push([name, value]); });
+  this.forEach(function(value, name) {
+    items.push([name, value]);
+  });
   var iterator = {
     next: function() {
       var value = items.shift();
-      return {done: value === undefined, value: value};
+      return { done: value === undefined, value: value };
     }
   };
 
@@ -189,14 +195,15 @@ URLSearchParamsProto.toJSON = function toJSON() {
 };
 
 URLSearchParamsProto.toString = function toString() {
-  var dict = this[secret], query = [], i, key, name, value;
+  var dict = this[secret],
+    query = [],
+    i,
+    key,
+    name,
+    value;
   for (key in dict) {
     name = encode(key);
-    for (
-      i = 0,
-      value = dict[key];
-      i < value.length; i++
-    ) {
+    for (i = 0, value = dict[key]; i < value.length; i++) {
       query.push(name + '=' + encode(value[i]));
     }
   }
@@ -207,43 +214,41 @@ const dP = Object.defineProperty;
 const gOPD = Object.getOwnPropertyDescriptor;
 
 function createSearchParamsPollute(search) {
-    /*jshint validthis:true */
-    function append(name, value) {
-      URLSearchParamsProto.append.call(this, name, value);
-      name = this.toString();
-      search.set.call(this._usp, name ? ('?' + name) : '');
-    }
-    function del(name) {
-      URLSearchParamsProto.delete.call(this, name);
-      name = this.toString();
-      search.set.call(this._usp, name ? ('?' + name) : '');
-    }
-    function set(name, value) {
-      URLSearchParamsProto.set.call(this, name, value);
-      name = this.toString();
-      search.set.call(this._usp, name ? ('?' + name) : '');
-    }
-    return function (sp, value) {
-      sp.append = append;
-      sp.delete = del;
-      sp.set = set;
-      return dP(sp, '_usp', {
-        configurable: true,
-        writable: true,
-        value: value
-      });
-    };
+  /*jshint validthis:true */
+  function append(name, value) {
+    URLSearchParamsProto.append.call(this, name, value);
+    name = this.toString();
+    search.set.call(this._usp, name ? '?' + name : '');
+  }
+  function del(name) {
+    URLSearchParamsProto.delete.call(this, name);
+    name = this.toString();
+    search.set.call(this._usp, name ? '?' + name : '');
+  }
+  function set(name, value) {
+    URLSearchParamsProto.set.call(this, name, value);
+    name = this.toString();
+    search.set.call(this._usp, name ? '?' + name : '');
+  }
+  return function(sp, value) {
+    sp.append = append;
+    sp.delete = del;
+    sp.set = set;
+    return dP(sp, '_usp', {
+      configurable: true,
+      writable: true,
+      value: value
+    });
+  };
 }
 
 function createSearchParamsCreate(polluteSearchParams) {
-  return function (obj, sp) {
-    dP(
-      obj, '_searchParams', {
-        configurable: true,
-        writable: true,
-        value: polluteSearchParams(sp, obj)
-      }
-    );
+  return function(obj, sp) {
+    dP(obj, '_searchParams', {
+      configurable: true,
+      writable: true,
+      value: polluteSearchParams(sp, obj)
+    });
     return sp;
   };
 }
@@ -256,13 +261,15 @@ function updateSearchParams(sp) {
 }
 
 function verifySearchParams(obj, Class) {
-  if (!(obj instanceof Class)) throw new TypeError(
-    "'searchParams' accessed on an object that " +
-    "does not implement interface " + Class.name
-  );
+  if (!(obj instanceof Class))
+    throw new TypeError(
+      "'searchParams' accessed on an object that " +
+        'does not implement interface ' +
+        Class.name
+    );
 }
 
-export function upgradeClass(Class){
+export function upgradeClass(Class) {
   let ClassProto = Class.prototype;
   let searchParams = gOPD(ClassProto, 'searchParams');
   let href = gOPD(ClassProto, 'href');
@@ -273,43 +280,40 @@ export function upgradeClass(Class){
     createSearchParams = createSearchParamsCreate(
       createSearchParamsPollute(search)
     );
-    Object.defineProperties(
-      ClassProto,
-      {
-        href: {
-          get: function () {
-            return href.get.call(this);
-          },
-          set: function (value) {
-            let sp = this._searchParams;
-            href.set.call(this, value);
-            if (sp) updateSearchParams(sp);
-          }
+    Object.defineProperties(ClassProto, {
+      href: {
+        get: function() {
+          return href.get.call(this);
         },
-        search: {
-          get: function () {
-            return search.get.call(this);
-          },
-          set: function (value) {
-            let sp = this._searchParams;
-            search.set.call(this, value);
-            if (sp) updateSearchParams(sp);
-          }
+        set: function(value) {
+          let sp = this._searchParams;
+          href.set.call(this, value);
+          if (sp) updateSearchParams(sp);
+        }
+      },
+      search: {
+        get: function() {
+          return search.get.call(this);
         },
-        searchParams: {
-          get: function () {
-            verifySearchParams(this, Class);
-            return this._searchParams || createSearchParams(
-              this,
-              new URLSearchParams(this.search)
-            );
-          },
-          set: function (sp) {
-            verifySearchParams(this, Class);
-            createSearchParams(this, sp);
-          }
+        set: function(value) {
+          let sp = this._searchParams;
+          search.set.call(this, value);
+          if (sp) updateSearchParams(sp);
+        }
+      },
+      searchParams: {
+        get: function() {
+          verifySearchParams(this, Class);
+          return (
+            this._searchParams ||
+            createSearchParams(this, new URLSearchParams(this.search))
+          );
+        },
+        set: function(sp) {
+          verifySearchParams(this, Class);
+          createSearchParams(this, sp);
         }
       }
-    );
+    });
   }
 }

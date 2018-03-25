@@ -10,7 +10,7 @@ if (isFastBoot) {
   NodeURLSearchParams = _url.URLSearchParams;
 
   if (!NodeURL) {
-    class NodeURL extends BaseURL {
+    NodeURL = class extends BaseURL {
       constructor(url, base) {
         super(url);
 

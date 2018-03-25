@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import { needPolyfill } from 'url';
 
-export default Ember.Component.extend({
-  yes: Ember.computed(function() {
+export default Component.extend({
+  yes: computed(function() {
     return needPolyfill();
   })
 });
